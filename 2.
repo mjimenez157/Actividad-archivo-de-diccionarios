@@ -1,0 +1,70 @@
+# Definición de diccionarios de pacientes
+paciente = {
+    "nombre": "Fabian",              # cadena (string)
+    "edad": "25",                    # cadena (string, aunque parece número)
+    "tipo_sangre": "AB-",            # cadena (string)
+    "efermedades": [                 # lista
+        {"nombre": "Cancer"},        # diccionario dentro de la lista
+        {"nombre": "Demensia Senil"},
+        {"nombre": "Diabetico Tipo 2"}
+    ]
+}
+
+paciente2 = {
+    "nombre": "David",
+    "edad": "25",
+    "tipo_sangre": "O+",
+    "efermedades": [
+        {"nombre": "Esquizofrenia"}
+    ]
+}
+
+# Acceder a información
+print(paciente)
+print("La edad del paciente 1 es", paciente["edad"])
+
+# Acceder a una enfermedad específica
+misefenmedades = paciente["efermedades"]   # lista de enfermedades
+efermadad = misefenmedades[1]              # segunda enfermedad (índice 1)
+nombreenfermadad = efermadad["nombre"]     # cadena dentro del diccionario
+print("Una enfermedad del paciente es:", nombreenfermadad)
+
+# Modificar un dato
+paciente["efermedades"][1]["nombre"] = "Diabetes Tipo 1"
+
+# Agregar nuevas claves
+paciente["fecha_nacimiento"] = "28-09-1999"
+paciente["altura"] = 1.89                  # número decimal (float)
+paciente["peso"] = 92                      # número entero (int)
+paciente["imc"] = paciente["peso"] / (paciente["altura"] ** 2)  # cálculo IMC
+print("Paciente con datos adicionales:", paciente)
+
+# Eliminar una clave
+del paciente["imc"]
+print("Paciente sin IMC:", paciente)
+
+# Verificar si existe una clave
+print("¿Existe 'nombre' en paciente?", "nombre" in paciente)
+
+# Ciclos para recorrer el diccionario
+print("\nClaves del diccionario:")
+for variable in paciente:
+    print(variable)
+
+print("\nValores del diccionario:")
+for variable in paciente.values():
+    print(variable)
+
+print("\nClaves y valores del diccionario:")
+for clave, valor in paciente.items():
+    print(clave, " = ", valor)
+    print(f"{clave} = {valor}")  # usando f-string
+
+# Uso de type() para diferenciar tipos de datos
+print("\nTipos de datos:")
+print("El nombre es:", type(paciente["nombre"]))        # str → cadena
+print("La edad es:", type(paciente["edad"]))            # str → cadena
+print("La altura es:", type(paciente["altura"]))        # float → número decimal
+print("El peso es:", type(paciente["peso"]))            # int → número entero
+print("Las enfermedades son:", type(paciente["efermedades"])) # list → lista
+print("El paciente es:", type(paciente))                # dict → diccionario
